@@ -1,7 +1,6 @@
-const Task = require('../models/Task');
-const getTasks = async (
-req,
-res) => {
+// backend/controllers/taskcontroller.js
+const Task = require("../models/Task");
+const getTasks = async (req, res) => {
 try {
 const tasks = await Task.find({ userId: req.user.id });
 res.json(tasks);
