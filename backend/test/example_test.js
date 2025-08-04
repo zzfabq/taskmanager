@@ -15,10 +15,7 @@ let server;
 let port;
 
 
-
 describe('AddTask Function Test', () => {
-
-// Test Case 1: Successfully create a task
 
   it('should create a new task successfully', async () => {
     // Mock request data
@@ -51,7 +48,6 @@ describe('AddTask Function Test', () => {
     createStub.restore();
   });
 
-// Test Case 2: Task Creation error
 
   it('should return 500 if an error occurs', async () => {
     // Stub Task.create to throw an error
@@ -123,7 +119,6 @@ describe('Update Function Test', () => {
   });
 
 
-// Test Case 1: Successfully create a task
   it('should return 404 if task is not found', async () => {
     const findByIdStub = sinon.stub(Task, 'findById').resolves(null);
 
@@ -140,7 +135,7 @@ describe('Update Function Test', () => {
 
     findByIdStub.restore();
   });
-// Test Case 2; Task Creation error
+
   it('should return 500 on error', async () => {
     const findByIdStub = sinon.stub(Task, 'findById').throws(new Error('DB Error'));
 
