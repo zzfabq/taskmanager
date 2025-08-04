@@ -4,8 +4,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-// import { AuthProvider} from "./context/AuthContext";
-// import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 // Importing pages
 import Login from "./pages/Login";
@@ -14,29 +14,64 @@ import Profile from "./pages/Profile";
 import Tasks from "./pages/Tasks";
 import MainLayout from "./layouts/MainLayout";
 import Owners from "./pages/Owners";  
-import Renters from "./pages/Renters";
+// import Renters from "./pages/Renters"; // Comment out until created
 import NotFoundPage from "./pages/NotFoundPage";
 import ErrorPage from "./pages/ErrorPage";
 
-
 // Main App component
-
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<MainLayout />} errorElement={<ErrorPage />}>
-        <Route index element={<Login />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/tasks' element={<Tasks />} />
-        <Route path='/owners' element={<Owners />} />
-        <Route path='/renters' element={<Renters />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
+      <>
+        {/* Public routes - no MainLayout wrapper */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        
+        {/* Protected routes with MainLayout */}
+        <Route path="/" element={<MainLayout />} errorElement={<ErrorPage />}>
+          <Route 
+            index 
+            element={
+              <ProtectedRoute>
+                <Tasks />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/profile" 
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/tasks" 
+            element={
+              <ProtectedRoute>
+                <Tasks />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/owners" 
+            element={
+              <ProtectedRoute>
+                <Owners />
+              </ProtectedRoute>
+            } 
+          />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </>
     )
   );
-  return <RouterProvider router={router} />;
+
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 };
 
 export default App;
