@@ -48,6 +48,7 @@ describe('AddTask Function Test', () => {
     createStub.restore();
   });
 
+
   it('should return 500 if an error occurs', async () => {
     // Stub Task.create to throw an error
     const createStub = sinon.stub(Task, 'create').throws(new Error('DB Error'));
@@ -116,7 +117,6 @@ describe('Update Function Test', () => {
     // Restore stubbed methods
     findByIdStub.restore();
   });
-
 
 
   it('should return 404 if task is not found', async () => {

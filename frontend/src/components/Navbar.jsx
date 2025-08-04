@@ -18,6 +18,9 @@ const Navbar = () => {
           <>
             <Link to="/tasks" className="mr-4">Tasks</Link>
             <Link to="/profile" className="mr-4">Profile</Link>
+            <Link to="/owners" className="mr-4">Owners</Link>
+            <Link to="/renters" className="mr-4">Renters</Link>
+            <Link to="/admin" className="mr-4">Admin</Link>
             <button
               onClick={handleLogout}
               className="bg-red-500 px-4 py-2 rounded hover:bg-red-700"
@@ -34,6 +37,9 @@ const Navbar = () => {
             >
               Register
             </Link>
+                        <Link to="/owners" className="mr-4">Owners</Link>
+            <Link to="/renters" className="mr-4">Renters</Link>
+            <Link to="/admin" className="mr-4">Admin</Link>
           </>
         )}
       </div>
