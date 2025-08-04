@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 const Task = require('../models/Task');
 const getTasks = async (
 req,
 res) => {
+=======
+// backend/controllers/taskcontroller.js
+const Task = require("../models/Task");
+const getTasks = async (req, res) => {
+>>>>>>> 22b85f02a330a36e5a51ac6927e0219c611c9405
 try {
 const tasks = await Task.find({ userId: req.user.id });
 res.json(tasks);
